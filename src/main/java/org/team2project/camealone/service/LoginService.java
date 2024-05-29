@@ -28,9 +28,14 @@ public class LoginService {
             return "유효하지 않은 이메일입니다";
         }
 
-        MemberDTO check = mapper.login(memberDTO.getId());
-        if (check != null) {
-            return "이미 사용중인 아이디입니다";
+        if (isIdDuplicated(memberDTO.getId())) {
+            return "이미 가입된 아이디입니다";
+        }
+        if (isEmailDuplicated(memberDTO.getEmail())) {
+            return "이미 가입된 이메일입니다";
+        }
+        if (isPhoneDuplicated(memberDTO.getPhone())) {
+            return "이미 가입된 전화번호 입니다";
         }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -43,6 +48,22 @@ public class LoginService {
         } else {
             return "알 수 없는 이유로 가입에 실패했습니다";
         }
+    }
+
+    private boolean isIdDuplicated(String id) {
+        MemberDTO member = mapper.login(id);
+        return member != null;
+    }
+
+    private boolean isEmailDuplicated(String email) {
+        MemberDTO member = mapper.findByEmail(email);
+        return member != null;
+    }
+
+    private boolean isPhoneDuplicated(String phone) {
+        // 이메일과 비슷하게 전화번호를 확인하는 쿼리를 작성합니다.
+        MemberDTO member = mapper.findByPhone(phone);
+        return member != null;
     }
 
     public String loginService(String id, String password) {

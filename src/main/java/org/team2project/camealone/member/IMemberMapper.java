@@ -7,6 +7,12 @@ public interface IMemberMapper {
     @Select("SELECT * FROM userinfo WHERE id = #{id}")
     MemberDTO login(String id);
 
+    @Select("SELECT * FROM userinfo WHERE email = #{email}")
+    MemberDTO findByEmail(String email);
+
+    @Select("SELECT * FROM userinfo WHERE phone = #{phone}")
+    MemberDTO findByPhone(String phone);
+
     @Insert("INSERT INTO userinfo (id, name, password, email, phone) VALUES (#{id}, #{name}, #{password}, #{email}, #{phone})")
     int addMember(MemberDTO memberDTO);
 }

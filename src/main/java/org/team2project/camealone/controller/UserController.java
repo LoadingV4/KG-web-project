@@ -46,11 +46,11 @@ public class UserController {
     @PostMapping("/register")
     @ResponseBody
     public Map<String, Object> register(@RequestBody MemberDTO memberDTO) {
-        String msg = loginService.register(memberDTO);
         Map<String, Object> response = new HashMap<>();
+        String msg = loginService.register(memberDTO);
         if (msg.equals("success")) {
             response.put("success", true);
-            response.put("message", "회원가입이 완료되었습니다, 3초후 자동으로 로그인 페이지로 이동합니다.");
+            response.put("message", "회원가입이 완료되었습니다");
         } else {
             response.put("success", false);
             response.put("message", msg);
