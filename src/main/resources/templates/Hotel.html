@@ -11,11 +11,11 @@
 <body>
     <div class="header">
         <h3>혼자왔니</h3>
-        <button class="button" onclick="redirectToPage()">로그인/회원가입</button>
+        <button class="button" onclick="redirectToPage()"><a href="/user/login">로그인/회원가입</a></button>
         <span class="weatherInfo"></span>
     </div>
     <ul class="menu">
-        <li class="menu-item">홈</li>
+        <li class="menu-item"><a href="/">홈</a></li>
         <li class="menu-item">
             <div class="dropdown-label" onclick="toggleDropdown()">지역</div>
             <div id="dropdown-content" class="dropdown-content">
@@ -38,8 +38,8 @@
                 <div class="menu-item" onclick="moveToLocation('제주도')">제주</div>
             </div>
         </li>
-        <li class="menu-item" onclick="redirectToPage2()">음식점</li>
-        <li class="menu-item" onclick="redirectToPage3()">관광지</li>
+        <li class="menu-item" onclick="redirectToPage2()"><a href="/Restaurant_Weather">음식점</a></li>
+        <li class="menu-item" onclick="redirectToPage3()"><a href="/Tour_att">관광지</a></li>
     </ul>
     <div class="radius-dropdown">
         <select id="radius-select" onchange="setRadius()">
@@ -58,7 +58,7 @@
         <div class="restaurant-container">
             <div class="sort-dropdown">
                 <select id="sort-select" onchange="sortRestaurants()">
-                    <option value="rating">별점 많은 순</option>
+                    <option value="rating">별점 높은 순</option>
                     <option value="reviews">리뷰 많은 순</option>
                 </select>
             </div>

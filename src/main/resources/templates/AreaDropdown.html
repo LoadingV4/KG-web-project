@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-
+<html lang="ko">
 <head>
-    <link rel="stylesheet" href="../CSS/AreaDropdown.css">
-    <script src="../static/js/AreaDropdown.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/AreaDropdown.css">
+    <script src="/js/AreaDropdown.js"></script>
 </head>
 
 <body>
@@ -13,7 +15,7 @@
         <a href="../login.html"><button type="button" class="login-button">로그인 / 회원가입</button></a>
     </div>
     <div class="header-bottom">
-        <a href="../main.html"><button type="button" class="home-button">HOME</button></a>
+        <a href=/"><button type="button" class="home-button">HOME</button></a>
         <div class="region-button">
             <button id="region-toggle" onclick="toggleDropdown()">지역 ▼</button>
             <ul id="region-select" class="region-select">
@@ -97,13 +99,13 @@
     <!-- 숙소 보기 -->
     <div class="result-card disabled" id="lodging-card" style="margin-right: 120px;">
         <a href="#" onclick="alert('숙소 클릭됨!')">
-            <img src="../static/img/숙소.png" width="100px" height="100px">
+            <img src="../img/숙소.png" width="100px" height="100px">
             <button class="button">숙소 보기</button>
         </a>
     </div>
     <!-- 음식점 보기 -->
     <div class="result-card disabled" id="restaurant-card">
-        <a href="./Restaurant.html">
+        <a href="/Restaurant">
             <img src="../static/img/음식.png" width="100px" height="100px">
             <button class="button">음식점 보기</button>
         </a>
