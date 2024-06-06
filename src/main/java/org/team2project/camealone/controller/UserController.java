@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
@@ -38,12 +38,12 @@ public class UserController {
         return response;
     }
 
-    @GetMapping("/Signup")
+    @GetMapping("/signup")
     public String signup() {
         return "Sign_up";
     }
 
-    @PostMapping("/Register")
+    @PostMapping("/register")
     @ResponseBody
     public Map<String, Object> register(@RequestBody MemberDTO memberDTO) {
         Map<String, Object> response = new HashMap<>();
