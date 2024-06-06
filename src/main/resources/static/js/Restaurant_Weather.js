@@ -359,71 +359,22 @@ function renderRestaurantInfo(restaurants) {
 
         // '찜' 버튼 생성 및 설정
         const likeBtn = document.createElement("button");
-        likeBtn.textContent = "찜";
-        likeBtn.addEventListener('click', () => {
-            try {
-                saveRestaurantToFavorites(placeDetails);
-            } catch (error) {
-                console.error('Error calling saveRestaurantToFavorites:', error);
-            }
-        });
-        // 'actions' 요소에 '찜' 버튼 추가
+        likeBtn.innerHTML = "찜";
         actions.appendChild(likeBtn);
-    })
-}
 
-function saveRestaurantToFavorites(placeDetails) {
-    const restaurant = {
-        place_id: placeDetails.place_id,
-        name: placeDetails.name,
-        formattedPhoneNumber: placeDetails.formatted_phone_number,
-        rating: placeDetails.rating,
-        photoUrl: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 80, maxHeight: 80 }) : null
-    };
+        const likeImg = document.createElement("img");
+        likeImg.src = "/img/love.png";
+        likeImg.alt = "찜";
+        likeImg.classList.add("action-image");
+        likeBtn.insertBefore(likeImg, likeBtn.firstChild)
 
-    fetch('/api/saveRestaurantToFavorites', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(restaurant)
-    })
-        .then(response => response.text())
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                alert('찜 목록에 저장되었습니다!');
-            } catch (error) {
-                console.error('Invalid JSON:', text);
-            }
-        })
-}
+        restaurantInfo.appendChild(actions);
 
-document.querySelectorAll('.favorite-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const restaurantData = {
-            place_id: this.dataset.place_id,
-            name: this.dataset.name,
-            vicinity: this.dataset.vicinity,
-            formattedPhoneNumber: this.dataset.formattedPhoneNumber,
-            rating: parseFloat(this.dataset.rating),
-            userRatingsTotal: parseInt(this.dataset.userRatingsTotal),
-            photoUrl: this.dataset.photoUrl
-        };
-
-        fetch('/restaurants/favorites', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(restaurantData),
-            credentials: 'include'  // 자격 증명 포함 (필요한 경우)
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+        infoBox.appendChild(restaurantInfo);
     });
-});
+}
+
+
 // 페이지 로드 시 지도 초기화
 window.onload = initMap;
 
@@ -491,9 +442,6 @@ function getWeather(lat, lon) {
         })
         .then(function (json) {
             // 온도와 날씨 아이콘 정보를 받아온다.
-    fetch(`/api/weather?lat=${lat}&lon=${lon}`) // api 키를 백엔드에서 받아오는 구문
-        .then(response => response.json())
-        .then(json => {
             const temperature = json.main.temp;
             const weatherIcon = json.weather[0].icon;
             const weatherDescription = convertWeatherDescription(json.weather[0].description); // 영문 설명을 한글로 변환
@@ -507,9 +455,8 @@ function getWeather(lat, lon) {
             const temperatureHTML = `<span style="display: inline-block; vertical-align: middle; margin-right: 10px;">${temperature}°C</span>`;
             weatherInfo.innerHTML = `${weatherIconHTML}${temperatureHTML}`;
         })
-        .catch(error => console.log("error:", error));
-})
-
+        .catch((error) => console.log("error:", error));
+}
 
 // 영문으로 받은 날씨 설명을 한글로 변환하는 함수
 function convertWeatherDescription(description) {
@@ -536,20 +483,5 @@ function convertWeatherDescription(description) {
             return description;
     }
 }
-function toggleDropdown() {
-    const dropdownContent = document.getElementById("myDropdown");
-    dropdownContent.style.display =
-        dropdownContent.style.display === "block" ? "none" : "block";
-}
-
-function closeDropdown() {
-    const dropdownContent = document.getElementById("myDropdown");
-    dropdownContent.style.display = "none";
-}
-
-function viewDetail(url) {
-    window.open(url, "_blank");
-}
 
 init();
-}
