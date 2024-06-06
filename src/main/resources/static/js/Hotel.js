@@ -373,22 +373,6 @@ function renderRestaurantInfo(restaurants) {
     });
 }
 
-function redirectToPage1() {
-    window.location.href = "/Main";
-}
-
-function redirectToPage3() {
-    window.location.href = "/Restaurant_Weather";
-}
-
-function redirectToPage4() {
-    window.location.href = "/Tour_att";
-}
-
-function redirectToPage5() {
-    window.location.href = "/MyPage";
-}
-
 // 페이지 로드 시 지도 초기화
 window.onload = initMap;
 

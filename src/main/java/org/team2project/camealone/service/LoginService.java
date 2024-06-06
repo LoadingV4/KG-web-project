@@ -1,8 +1,12 @@
 package org.team2project.camealone.service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.team2project.camealone.member.IMemberMapper;
@@ -10,8 +14,16 @@ import org.team2project.camealone.member.MemberDTO;
 
 @Service
 public class LoginService {
-    @Autowired private IMemberMapper mapper;
-    @Autowired private HttpSession session;
+    private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
+
+    @Autowired
+    private IMemberMapper mapper;
+
+    @Autowired
+    private HttpSession session;
+
+    @Autowired
+    private HttpServletRequest request;
 
     @Transactional
     public String register(MemberDTO memberDTO) {
@@ -67,6 +79,9 @@ public class LoginService {
     }
 
     public String loginService(String id, String password) {
+        logger.debug("로그인 시도: ID={}, Password={}", id, password);
+        session = request.getSession(true); // 세션 생성
+
         if (id == null || id.trim().isEmpty()) {
             return "아이디를 입력하세요";
         }
@@ -80,22 +95,47 @@ public class LoginService {
             session.setAttribute("id", check.getId());
             session.setAttribute("email", check.getEmail());
             session.setAttribute("password", check.getPassword());
-            return "success";
+            SecurityContextHolder.getContext().setAuthentication(SecurityContextHolder.getContext().getAuthentication());
+
+            logger.info("로그인 성공: ID={}", id);
+
+            return "성공";
         } else if (check == null) {
+            logger.warn("로그인 실패: 회원가입을 먼저 해주세요. ID={}", id);
             return "회원가입을 먼저 해주세요.";
         } else {
+            logger.warn("로그인 실패: 아이디나 비밀번호가 잘못됐습니다. ID={}", id);
             return "아이디나 비밀번호가 잘못됐습니다";
         }
     }
 
     // 회원 탈퇴를 처리하는 함수
-    public boolean deleteUser(String username, String password) {
-        MemberDTO user = mapper.login(username);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (user != null && encoder.matches(password, user.getPassword())) {
-            mapper.deleteMember(user.getId());
-            return true;
+    public boolean deleteUser(String sessionId, String password) {
+        logger.debug("회원 탈퇴 시도: Session ID={}, Password={}", sessionId, password);
+
+        if (password == null || password.trim().isEmpty()) {
+            return false;
         }
-        return false;
+        MemberDTO check = mapper.login(sessionId);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (check != null && encoder.matches(password, check.getPassword())) {
+            int result = mapper.deleteMember(sessionId);
+            logger.debug("회원 탈퇴 처리 결과: Result={}", result);
+            return result == 1;
+        } else {
+            logger.warn("회원 탈퇴 실패: 비밀번호가 일치하지 않습니다. Session ID={}", sessionId);
+            return false;
+        }
+    }
+
+    // 회원 정보를 수정하는 함수
+    public String updateUserInfo(MemberDTO memberDTO) {
+        String sessionId = request.getSession().getId();
+
+        if (sessionId == null || sessionId.trim().isEmpty()) {
+            return "로그인이 필요합니다.";
+        }else {
+
+        }
     }
 }
