@@ -9,7 +9,6 @@ public class VariousController {
     public String getDate(){
         return "Date_select";
     }
-
     @GetMapping("/Restaurant_Weather")
     public String Restaurant() {
         return "Restaurant_Weather";
@@ -24,7 +23,6 @@ public class VariousController {
     public String MyPage() {
         return "MyPage";
     }
-
     @GetMapping("/list")
     public String List() {
         return "list";
@@ -38,5 +36,10 @@ public class VariousController {
     @GetMapping("/Tour_att")
     public String TourAtt() {
         return "Tour_att";
+    }
+
+    @GetMapping("/Info")
+    public String Info() {
+        return "Info";
     }
 }
