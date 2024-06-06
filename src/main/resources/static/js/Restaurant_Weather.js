@@ -308,7 +308,7 @@ function renderRestaurantInfo(restaurants) {
 
         const img = document.createElement("img");
         img.src = placeDetails.photos
-            ? placeDetails.photos[0].getUrl({ maxWidth: 80, maxHeight: 80 })
+            ? placeDetails.photos[0].getUrl({maxWidth: 80, maxHeight: 80})
             : noImageUrl;
         restaurantInfo.appendChild(img);
 
@@ -326,19 +326,19 @@ function renderRestaurantInfo(restaurants) {
         const rating = document.createElement("p");
         rating.classList.add("star-rating");
         rating.textContent = `${placeDetails.rating ? placeDetails.rating.toFixed(1) : "N/A"
-            }`;
+        }`;
         details.appendChild(rating);
 
         const reviewCount = document.createElement("p");
         reviewCount.textContent = `리뷰 수: ${placeDetails.user_ratings_total ? placeDetails.user_ratings_total : "N/A"
-            }`;
+        }`;
         details.appendChild(reviewCount);
 
         const phone = document.createElement("p");
         phone.textContent = `연락처: ${placeDetails.formatted_phone_number
             ? placeDetails.formatted_phone_number
             : "N/A"
-            }`;
+        }`;
         details.appendChild(phone);
 
         restaurantInfo.appendChild(details);
@@ -353,48 +353,75 @@ function renderRestaurantInfo(restaurants) {
             const mapUrl = `https://www.google.com/maps/search/?api=1&query=${name}`;
             window.open(mapUrl, "_blank");
         });
-
         actions.appendChild(detailBtn);
 
+        // '찜' 버튼 생성 및 설정
         const likeBtn = document.createElement("button");
-        likeBtn.innerHTML = "찜";
+        likeBtn.textContent = "찜";
+        likeBtn.addEventListener('click', () => {
+            try {
+                saveRestaurantToFavorites(placeDetails);
+            } catch (error) {
+                console.error('Error calling saveRestaurantToFavorites:', error);
+            }
+        });
+        // 'actions' 요소에 '찜' 버튼 추가
         actions.appendChild(likeBtn);
-        
-        const likeImg = document.createElement("img");
-        likeImg.src = "../img/love.png";
-        likeImg.alt = "찜";
-        likeImg.classList.add("action-image");
-        
-        // 이미지 로드 실패 시 대체 이미지 설정
-        likeImg.onerror = function() {
-            this.src = "../img/사진없음.png"; // 대체 이미지 경로
+    })
+}
+
+function saveRestaurantToFavorites(placeDetails) {
+    const restaurant = {
+        place_id: placeDetails.place_id,
+        name: placeDetails.name,
+        formattedPhoneNumber: placeDetails.formatted_phone_number,
+        rating: placeDetails.rating,
+        photoUrl: placeDetails.photos ? placeDetails.photos[0].getUrl({ maxWidth: 80, maxHeight: 80 }) : null
+    };
+
+    fetch('/api/saveRestaurantToFavorites', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(restaurant)
+    })
+        .then(response => response.text())
+        .then(text => {
+            try {
+                const data = JSON.parse(text);
+                alert('찜 목록에 저장되었습니다!');
+            } catch (error) {
+                console.error('Invalid JSON:', text);
+            }
+        })
+}
+
+document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const restaurantData = {
+            place_id: this.dataset.place_id,
+            name: this.dataset.name,
+            vicinity: this.dataset.vicinity,
+            formattedPhoneNumber: this.dataset.formattedPhoneNumber,
+            rating: parseFloat(this.dataset.rating),
+            userRatingsTotal: parseInt(this.dataset.userRatingsTotal),
+            photoUrl: this.dataset.photoUrl
         };
-        
-        likeBtn.insertBefore(likeImg, likeBtn.firstChild);
 
-        restaurantInfo.appendChild(actions);
-
-        infoBox.appendChild(restaurantInfo);
+        fetch('/restaurants/favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(restaurantData),
+            credentials: 'include'  // 자격 증명 포함 (필요한 경우)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
     });
-}
-
-
-function redirectToPage1() {
-    window.location.href = '../html/Main.html';
-}
-function redirectToPage2() {
-    window.location.href = '../html/Hotel.html';
-}
-function redirectToPage3() {
-    window.location.href = '../html/Restaurant_Weather.html';
-}
-function redirectToPage4() {
-    window.location.href = '../html/Tour_att.html';
-}
-function redirectToPage5() {
-    window.location.href = '../html/MyPage.html';
-}
-
+});
 // 페이지 로드 시 지도 초기화
 window.onload = initMap;
 

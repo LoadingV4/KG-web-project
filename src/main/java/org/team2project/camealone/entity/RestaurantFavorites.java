@@ -12,12 +12,11 @@ public class RestaurantFavorites {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String placeId;
+    private String place_id;
     private String name;
     private String formattedPhoneNumber;
 
-    public RestaurantFavorites() {
-    }
+    public RestaurantFavorites() {}
 
     private double rating;
     private String photoUrl;
@@ -30,12 +29,10 @@ public class RestaurantFavorites {
         this.id = id;
     }
 
-    public String getPlaceId() {
-        return placeId;
-    }
+    public String getPlace_id() {return place_id;}
 
-    public void setPlaceId(String placeId) {
-        this.placeId = placeId;
+    public void setPlace_id(String place_id) {
+        this.place_id = place_id;
     }
 
     public String getName() {
@@ -50,21 +47,15 @@ public class RestaurantFavorites {
         return formattedPhoneNumber;
     }
 
-    public void setFormattedPhoneNumber(String formattedPhoneNumber) {
-        this.formattedPhoneNumber = formattedPhoneNumber;
-    }
+    public void setFormattedPhoneNumber(String formattedPhoneNumber) {this.formattedPhoneNumber = formattedPhoneNumber;}
 
     public double getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
+    public void setRating(double rating) {this.rating = rating;}
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
+    public String getPhotoUrl() {return photoUrl;}
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;

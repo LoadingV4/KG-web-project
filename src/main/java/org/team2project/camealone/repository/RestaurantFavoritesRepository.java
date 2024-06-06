@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 import org.team2project.camealone.entity.RestaurantFavorites;
 
 @Repository
-public interface RestaurantFavoritesRepository extends JpaRepository<RestaurantFavorites, Long> {
-}
+public interface RestaurantFavoritesRepository extends JpaRepository<RestaurantFavorites, Long> { }
