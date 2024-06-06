@@ -84,7 +84,7 @@ public class LoginService {
         } else if (check == null) {
             return "회원가입을 먼저 해주세요.";
         } else {
-            return "Invalid username or password";
+            return "아이디나 비밃번호가 잘못됐습니다";
         }
     }
 }

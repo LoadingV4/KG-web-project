@@ -8,10 +8,10 @@ function goToMyPage() {
 
     // 만약 사용자가 로그인되어 있지 않다면 로그인 페이지로 이동
     if (!isLoggedIn) {
-        window.location.href = "../HTML/login.html";
+        window.location.href = '/login';
     } else {
         // 사용자가 로그인되어 있다면 마이페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
-        window.location.href = "../HTML/MyPage.html";
+        window.location.href = '/MyPage';
     }
 }
 
@@ -21,6 +21,7 @@ function checkUserLoginStatus() {
     // 예를 들어, 쿠키나 세션을 사용하여 사용자의 로그인 상태를 확인할 수 있습니다.
     // 이 함수는 사용자가 로그인되어 있는지 여부를 true 또는 false로 반환합니다.
     // 이 예시에서는 간단히 false를 반환하도록 합니다.
+
     return false;
 }
 
