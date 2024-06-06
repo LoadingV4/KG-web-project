@@ -21,6 +21,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/public/**").permitAll()  // 누구나 접근 가능
+                        .requestMatchers("/user/delete").authenticated()  // 인증된 사용자만 접근 가능
                         .anyRequest().permitAll()  // 나머지 요청도 접근 가능
                 )
                 .csrf(csrf -> csrf.disable())  // CSRF 보호 비활성화 (개발 중에만 사용, 실제 운영에서는 주의)
@@ -44,6 +45,7 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(user, admin);
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

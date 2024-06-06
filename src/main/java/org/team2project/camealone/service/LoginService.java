@@ -1,12 +1,12 @@
 package org.team2project.camealone.service;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.team2project.camealone.member.IMemberMapper;
 import org.team2project.camealone.member.MemberDTO;
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class LoginService {
@@ -86,5 +86,16 @@ public class LoginService {
         } else {
             return "아이디나 비밀번호가 잘못됐습니다";
         }
+    }
+
+    // 회원 탈퇴를 처리하는 함수
+    public boolean deleteUser(String username, String password) {
+        MemberDTO user = mapper.login(username);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (user != null && encoder.matches(password, user.getPassword())) {
+            mapper.deleteMember(user.getId());
+            return true;
+        }
+        return false;
     }
 }

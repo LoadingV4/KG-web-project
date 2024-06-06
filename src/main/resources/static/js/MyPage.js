@@ -1,10 +1,33 @@
 function confirmDelete() {
   var result = confirm("정말 탈퇴하시겠습니까?\n탈퇴시, 복구가 불가능합니다.");
   if (result) {
-      window.location.href = '/confirmdelte';
+      // window.location.href = '/confirmdelte';
       // 임의로 붙인 탈퇴 페이지명
       // 나중에 탈퇴 페이지 만들어서 구현
       // 탈퇴 페이지에 들어가야할 것 : 비밀번호 다시 확인, 비밀번호를 확인했으면 정말 탈퇴할거냐고 다시 묻고 확인 누르면 탈퇴하기
+
+      // 백엔드에 회원탈퇴를 위해 비밀번호 확인을 요청하는 부분
+      var password = document.getElementById('passwordInput').value;
+      fetch('/user/delete', {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ password: password })
+      })
+          .then(response => response.json())
+          .then(response => {
+              if (response.success) {
+                  alert(response.message);
+                  window.location.href = '/logout'; // 탈퇴 후 로그아웃 페이지로 이동
+              } else {
+                  alert(response.message);
+              }
+          })
+          .catch(error => {
+              alert('오류가 발생했습니다. 다시 시도해주세요.');
+              console.error('Error:', error);
+          });
   } else {
       alert("탈퇴가 취소되었습니다."); 
   }
