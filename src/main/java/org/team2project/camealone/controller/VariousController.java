@@ -16,7 +16,7 @@ public class VariousController {
 
     @GetMapping("/Restaurant_Weather")
     public String Restaurant() {
-        return "Restaurant";
+        return "Restaurant_Weather";
     }
 
     @GetMapping("/areaDropdown")
@@ -24,7 +24,7 @@ public class VariousController {
         return "AreaDropdown";
     }
 
-    @GetMapping("/myPage")
+    @GetMapping("/MyPage")
     public String MyPage() {
         return "MyPage";
     }

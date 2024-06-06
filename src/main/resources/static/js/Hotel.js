@@ -384,11 +384,11 @@ function renderRestaurantInfo(restaurants) {
 }
 
 function redirectToPage2() {
-    window.location.href = '../HTML/Restaurant_Weather.html';
+    window.location.href = '/Restaurant_Weather';
 }
 
 function redirectToPage3() {
-    window.location.href = '../HTML/Tour_att.html';
+    window.location.href = '/Tour_att';
 }
 
 // 페이지 로드 시 지도 초기화
