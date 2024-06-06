@@ -47,3 +47,4 @@ public class MemberDTO {
         this.phone = phone;
     }
 }
+
