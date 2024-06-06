@@ -22,6 +22,7 @@ function checkUserLoginStatus() {
     // 이 함수는 사용자가 로그인되어 있는지 여부를 true 또는 false로 반환합니다.
     // 이 예시에서는 간단히 false를 반환하도록 합니다.
 
+
     return false;
 }
 
