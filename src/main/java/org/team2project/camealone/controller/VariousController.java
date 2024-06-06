@@ -9,7 +9,7 @@ public class VariousController {
 //    @GetMapping("/login") //  로그인페이지
 //    public String getLogin() {return "login";}
 
-    @GetMapping("/date") //  날짜 선택 페이지
+    @GetMapping("/Date") //  날짜 선택 페이지
     public String getDate(){
         return "Date_select";
     }
@@ -19,7 +19,7 @@ public class VariousController {
         return "Restaurant_Weather";
     }
 
-    @GetMapping("/areaDropdown")
+    @GetMapping("/AreaDropdown")
     public String AreaDropdown() {
         return "AreaDropdown";
     }
@@ -29,7 +29,7 @@ public class VariousController {
         return "MyPage";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/List")
     public String List() {
         return "list";
     }

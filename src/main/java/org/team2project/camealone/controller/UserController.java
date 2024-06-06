@@ -38,12 +38,12 @@ public class UserController {
         return response;
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/Signup")
     public String signup() {
         return "Sign_up";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/Register")
     @ResponseBody
     public Map<String, Object> register(@RequestBody MemberDTO memberDTO) {
         Map<String, Object> response = new HashMap<>();
