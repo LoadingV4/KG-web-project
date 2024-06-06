@@ -8,10 +8,10 @@ function goToMyPage() {
 
     // 만약 사용자가 로그인되어 있지 않다면 로그인 페이지로 이동
     if (!isLoggedIn) {
-        window.location.href = '/login';
+        window.location.href = "/login";
     } else {
         // 사용자가 로그인되어 있다면 마이페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
-        window.location.href = '/MyPage';
+        window.location.href = "/MyPag";
     }
 }
 
@@ -21,8 +21,6 @@ function checkUserLoginStatus() {
     // 예를 들어, 쿠키나 세션을 사용하여 사용자의 로그인 상태를 확인할 수 있습니다.
     // 이 함수는 사용자가 로그인되어 있는지 여부를 true 또는 false로 반환합니다.
     // 이 예시에서는 간단히 false를 반환하도록 합니다.
-
-
     return false;
 }
 
@@ -108,31 +106,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 이미지 URL 배열
     const initialImageUrls = [
-        "../img/카트.jpg",
-        "../img/광안리.jpg",
-        "../img/짚라인.jpg",
-        "../img/어름치 마을.jpg",
+        "/img/제주.png",
+        "/img/바우.png",
+        "/img/남해.png",
+        "/img/화개.png",
     ];
 
     const subsequentImageUrls1 = [
-        "../img/네트어드벤처.jpg",
-        "../img/단양 선암골생태유람길.PNG",
-        "../img/춘천 강촌레일파크.PNG",
-        "../img/벚꽃 명당 영천 임고강변공원.PNG",
+        "/img/공주.png",
+        "/img/짚라인.jpg",
+        "/img/어름치 마을.jpg",
+        "/img/카트.jpg",
     ];
 
     const subsequentImageUrls2 = [
-        "../img/임실 사선대국민관광지.PNG",
-        "../img/나주 영산강둔치체육공원.PNG",
-        "../img/시흥 그린웨이.PNG",
-        "../img/강릉 자전거 타고 한 바퀴.PNG",
+        "/img/광안리.jpg",
+        "/img/네트어드벤처.jpg",
+        "/img/나주 영산강둔치체육공원.PNG",
+        "/img/임실 사선대국민관광지.PNG",
     ];
 
     const subsequentImageUrls3 = [
-        "../img/서산 천수만 자전거길.PNG",
-        "../img/영주 자전거길.PNG",
-        "../img/광양 섬진강자전거길.PNG",
-        "../img/팔공산.PNG",
+        "/img/춘천 강촌레일파크.PNG",
+        "/img/단양 선암골생태유람길.PNG",
+        "/img/벚꽃 명당 영천 임고강변공원.PNG",
+        "/img/시흥 그린웨이.PNG",
     ];
 
     function preloadImages(urls) {

@@ -6,8 +6,6 @@ var infoWindow; // 정보창 객체
 var geocoder; // 지오코딩 객체
 var panorama; // 거리뷰 객체
 
-const API_KEY = "0eb3c18f86fc6fc3b7f1922d73ae5779"; // 날씨 API 키
-
 // 주요 도시 및 위치 좌표
 var locations = {
     서울: { lat: 37.5663, lng: 126.9779 },
@@ -458,27 +456,23 @@ function moveToLocation(location) {
 
 // 날씨 API를 통해 날씨에 관련된 정보들을 받아온다.
 function getWeather(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (json) {
-            // 온도와 날씨 아이콘 정보를 받아온다.
+    fetch(`/api/weather?lat=${lat}&lon=${lon}`) // api 키를 백엔드에서 받아오는 구문
+        .then(response => response.json())
+        .then(json => {
             const temperature = json.main.temp;
             const weatherIcon = json.weather[0].icon;
-            const weatherDescription = convertWeatherDescription(json.weather[0].description); // 영문 설명을 한글로 변환
+            const weatherDescription = convertWeatherDescription(json.weather[0].description);
 
-            // 영문으로 받은 날씨 아이콘 정보를 한글로 변환한다.
             const weatherIconCode = json.weather[0].icon;
             const weatherIconAdrs = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
 
-            // 받아온 정보들을 표현한다.
             const weatherIconHTML = `<img src="${weatherIconAdrs}" alt="Weather Icon" style="display: inline-block; vertical-align: middle;">`;
             const temperatureHTML = `<span style="display: inline-block; vertical-align: middle; margin-right: 10px;">${temperature}°C</span>`;
             weatherInfo.innerHTML = `${weatherIconHTML}${temperatureHTML}`;
         })
-        .catch((error) => console.log("error:", error));
+        .catch(error => console.log("error:", error));
 }
+
 
 // 영문으로 받은 날씨 설명을 한글로 변환하는 함수
 function convertWeatherDescription(description) {
