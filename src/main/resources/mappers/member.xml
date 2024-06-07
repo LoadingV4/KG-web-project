@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.team2project.camealone.member.IMemberMapper">
+    <select id="login" resultType="org.team2project.camealone.member.MemberDTO">
+        SELECT * FROM userinfo WHERE id = #{id}
+    </select>
+
+    <insert id="addMember">
+        INSERT INTO userinfo (id, name, password, email, phone)
+        VALUES (#{id}, #{name}, #{password}, #{email}, #{phone})
+    </insert>
+</mapper>

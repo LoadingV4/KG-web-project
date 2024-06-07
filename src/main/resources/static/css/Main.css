@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'S-CoreDream-3Light';
+}
+
+/* 헤더 스타일링 */
+header {
+    background-color: #123657;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+h1{
+    text-align: center;
+    margin-top: 15px;
+}
+h2{
+    text-align: center;
+    margin-top: 18px;
+    font-size: 15px;
+}
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 헤더 우측 정렬 */
+    margin-top: 10px; /* 헤더의 제일 위쪽으로 이동 */
+    margin-right: 20px; /* 로그인 버튼과 드롭다운 메뉴 사이의 간격 조절 */
+}
+
+.weatherInfo {
+    font-size: 16px;
+    user-select: none;
+    margin-right: 180px;
+    color: #fff;
+    position: absolute; /* 절대 위치로 변경 */
+    margin-top: 3px;
+}
+
+.btn-navi.login {
+    background-color: #d0d1d0; /* Green */
+    border-radius: 15px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-navi.login:hover {
+    background-color: #747474;
+}
+
+.show {
+    display: block;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffffff;
+    color: rgb(80, 80, 80);
+    font-size: 18px;
+    padding: 5px;
+    align-items: center; /* 추가된 부분 */
+    list-style: none;
+    border: 1px solid #ccc; /* 모든 면에 테두리 추가 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.menu-item {
+    padding: 10px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    user-select: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px
+}
+
+.dropdown-content .menu-item {
+    padding: 20px;
+    text-align: center;
+    background : none;
+    border: none;
+    white-space: nowrap;
+    font-size: 1px;
+}
+
+.show {
+    display: grid;
+}
+
+.main-content {
+    display: flex;
+    width: 98%;
+    padding: 10px;
+    gap: 30px;
+    position: relative;
+}
+
+.map-container {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 960px;
+    height: 540px;
+    margin-top: 50px;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.radius-dropdown {
+    position: absolute;
+    top: 250px;
+    left: 10px;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.radius-dropdown select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="black" d="M0 0L2 2L4 0z"/></svg>') no-repeat right 10px center;
+    background-color: #fff;
+    background-size: 10px;
+    width: 150px;
+}
+
+.radius-dropdown select::-ms-expand {
+    display: none;
+}
+
+.moveToUserLocation {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#search-input {
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+#selected-location {
+    margin-left: 10px;
+    /* 검색 입력창 오른쪽으로 20px 여백 */
+    font-size: 14px;
+    color: black;
+    user-select: none;
+}
+
+.dropdown-label {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-label::after {
+    content: '▼';
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+.restaurant-container {
+    position: relative;
+    margin-top: 50px;
+}
+
+.restaurant-info-box {
+    padding: 10px;
+    width: 950px;
+    height: 560px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.sort-dropdown {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    margin-right: 10px;
+    z-index: 1;
+}
+
+.restaurant-info {
+    display: flex;
+    user-select: none;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #bdbbbb;
+    border-radius: 8px;
+    background-color: ghostwhite;
+}
+
+.restaurant-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.restaurant-details {
+    flex: 1;
+}
+
+.restaurant-details h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.restaurant-details p {
+    margin: 4px 0;
+}
+
+.restaurant-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 80px;
+}
+
+.restaurant-actions button {
+    border: none;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px 22px;
+    border: 1px solid #ccc; /* 모든 면에 테두리 추가 */
+}
+
+.restaurant-actions img {
+    width: 16px;
+    height: 16px;
+}
+
+.restaurant-actions button:hover {
+    text-decoration: underline;
+}
+
+.star-rating {
+    color: #ffc107;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.star-rating::before {
+    content: '★';
+    margin-right: 5px;
+}
+
+.street-view {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    display: none;
+    /* 기본적으로 숨김 */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container * {
+    margin: 10px;
+    color: black;
+}
+
+.container h1 {
+    font-size: 3em;
+}
+
+
+
+footer {
+    font-size: 13px;
+    position: fixed; /* 화면에 고정 */
+    bottom: 0; /* 화면 하단에 배치 */
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
