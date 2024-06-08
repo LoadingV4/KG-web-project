@@ -238,7 +238,7 @@ async function fetchAllRestaurantMarkers(lat, lng, radius) {
 
 // 마커를 생성하는 함수
 function createMarker(place) {
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.Marker.AdvancedMarkerElement({
         map: map,
         position: place.geometry.location,
         title: place.name,
@@ -348,32 +348,93 @@ function renderRestaurantInfo(restaurants) {
         const actions = document.createElement("div");
         actions.classList.add("restaurant-actions");
 
-        const detailBtn = document.createElement("button");
-        detailBtn.textContent = "상세정보";
-        detailBtn.addEventListener("click", function () {
-            const name = encodeURIComponent(placeDetails.name); // 음식점 이름을 URL 형식에 맞게 인코딩합니다.
-            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${name}`;
-            window.open(mapUrl, "_blank");
-        });
-        actions.appendChild(detailBtn);
-
-        // '찜' 버튼 생성 및 설정
-        const likeBtn = document.createElement("button");
-        likeBtn.innerHTML = "찜";
-        actions.appendChild(likeBtn);
-
-        const likeImg = document.createElement("img");
-        likeImg.src = "/img/love.png";
-        likeImg.alt = "찜";
-        likeImg.classList.add("action-image");
-        likeBtn.insertBefore(likeImg, likeBtn.firstChild)
-
-        restaurantInfo.appendChild(actions);
-
-        infoBox.appendChild(restaurantInfo);
     });
 }
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded event fired');
+    fetch('/api/favorites')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched data:', data);
+            const container = document.getElementById('favorites-container');
+            data.forEach(favorite => {
+                const favoriteElement = document.createElement('div');
+                favoriteElement.className = 'new-element';
+                favoriteElement.style = 'position: relative; width: 840px; height: 120px; border: 1px solid black; border-radius: 10px; display: flex; justify-content: flex-start; align-items: center; margin-bottom: 20px;';
 
+                favoriteElement.innerHTML = `
+                    <img src="${favorite.photoUrl}" alt="${favorite.name}" style="width: 110px; height: 110px; border-radius: 10px; object-fit: contain; margin-left: 5px;">
+                    <div style="display: inline-block; vertical-align: top; text-align: left; margin-left: 10px;">
+                        <div style="font-size: 20px; font-weight: bold;">${favorite.name}</div>
+                        <br>
+                        <div style="font-size: 18px; color: #f4d442; display: inline-block; margin-top: 10px;">★ ${favorite.rating}</div>
+                        <button class="detail-button" style="font-size: 14px; margin-left: 400px; border-radius: 10px;">상세정보</button>
+                        <button class="cancel-button" style="font-size: 14px; border-radius: 10px;">취소
+                            <img src="/img/love.png" alt="Info Icon" style="width: 14px; height: 14px;">
+                        </button>
+                    </div>
+                `;
+                container.appendChild(favoriteElement);
+
+                // 상세 정보 버튼에 이벤트 리스너 추가
+                const detailButton = favoriteElement.querySelector('.detail-button');
+                detailButton.addEventListener('click', function() {
+                    const name = encodeURIComponent(favorite.name);
+                    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${name}`;
+                    window.open(mapUrl, "_blank");
+                });
+
+                // "찜" 버튼 생성 및 이벤트 리스너 추가
+                const likeBtn = document.createElement("button");
+                likeBtn.textContent = "찜";
+                likeBtn.style = "font-size: 14px; border-radius: 10px; margin-left: 10px;";
+                likeBtn.addEventListener('click', () => {
+                    try {
+                        saveRestaurantToFavorites(favorite);
+                    } catch (error) {
+                        console.error('Error calling saveRestaurantToFavorites:', error);
+                    }
+                });
+
+                // "찜" 이미지 추가
+                const likeImg = document.createElement("img");
+                likeImg.src = "/img/love.png";
+                likeImg.alt = "찜";
+                likeImg.style = "width: 14px; height: 14px; margin-left: 5px;";
+                likeBtn.insertBefore(likeImg, likeBtn.firstChild);
+
+                favoriteElement.appendChild(likeBtn);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+function saveRestaurantToFavorites(favorite) {
+    const restaurant = {
+        place_id: favorite.place_id,
+        name: favorite.name,
+        formattedPhoneNumber: favorite.formatted_phone_number,
+        rating: favorite.rating,
+        photoUrl: favorite.photoUrl
+    };
+
+    fetch('/api/saveRestaurantToFavorites', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(restaurant)
+    })
+        .then(response => response.text())
+        .then(text => {
+            try {
+                alert('찜 목록에 저장되었습니다!');
+                const data = JSON.parse(text);
+            } catch (error) {
+                console.error('Invalid JSON:', text);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 // 페이지 로드 시 지도 초기화
 window.onload = initMap;

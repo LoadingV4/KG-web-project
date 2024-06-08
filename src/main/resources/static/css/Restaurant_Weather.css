@@ -237,6 +237,10 @@ body {
     align-items: center;
     gap: 5px;
     margin-top: 80px;
+    /* 변경 부분 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: white;
 }
 
 .restaurant-actions button {
