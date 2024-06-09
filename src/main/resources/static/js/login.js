@@ -28,7 +28,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         })
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById("error-message").textContent = "서버 오류가 발생했습니다.";
+            document.getElementById("error-message").textContent = "아이디나 비밀번호가 일치하지 않습니다";
         });
 });
 

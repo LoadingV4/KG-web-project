@@ -24,6 +24,5 @@ public interface IMemberMapper {
 
     // 회원정보 수정
     @Update("UPDATE userinfo SET password=#{password} where id=#{id}")
-    // 임시임, 나중에 바꿀것
-    int updatePassword(String id, String password);
+    String updatePassword(String id, String password);
 }
