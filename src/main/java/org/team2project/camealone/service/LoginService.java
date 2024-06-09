@@ -131,11 +131,18 @@ public class LoginService {
     // 회원 정보를 수정하는 함수
     public String updateUserInfo(MemberDTO memberDTO) {
         String sessionId = request.getSession().getId();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if (sessionId == null || sessionId.trim().isEmpty()) {
+        if (sessionId == null) {
             return "로그인이 필요합니다.";
         }else {
-            return "";
+            if (encoder.matches(memberDTO.getPassword(), memberDTO.getPassword())) {
+                String updatePassword = mapper.updatePassword(memberDTO.getId(), memberDTO.getPassword());
+                logger.debug("회원 정보 수정 됨");
+                return updatePassword;
+            }else {
+                return "비밀번호를 알맞게 입력하세요";
+            }
         }
     }
 }

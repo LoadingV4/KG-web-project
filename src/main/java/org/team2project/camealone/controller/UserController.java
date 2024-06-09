@@ -123,17 +123,23 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update() {
+    public ResponseEntity<Map<String, Object>> update(MemberDTO memberDTO) {
         String sessionId = (String) session.getAttribute("id");
         logger.debug("Session ID: {}", sessionId);
 
         Map<String, Object> response = new HashMap<>();
         if (sessionId == null) {
-            response.put("success", false);
-            return "redirect:login";
+            response.put("failed", false);
+            return ResponseEntity.status(403).body(response);
         }else {
             response.put("success", true);
-            return "redirect:update";
+            String result = loginService.updateUserInfo(memberDTO);
+            if (!result.equals("로그인이 필요합니다") && !result.equals("비밀번호를 알맞게 입력하세요")) {
+                return ResponseEntity.ok(response);
+            }else {
+                response.put("failed", false);
+                return ResponseEntity.status(403).body(response);
+            }
         }
     }
 }
