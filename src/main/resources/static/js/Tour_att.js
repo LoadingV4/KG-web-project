@@ -283,19 +283,19 @@ function sortRestaurants() {
             }
         });
     } else
-        if (sortBy === "reviews") {
-            restaurantList.sort((a, b) => {
-                if (b.user_ratings_total && a.user_ratings_total) {
-                    return b.user_ratings_total - a.user_ratings_total;
-                } else if (b.user_ratings_total) {
-                    return 1;
-                } else if (a.user_ratings_total) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-        }
+    if (sortBy === "reviews") {
+        restaurantList.sort((a, b) => {
+            if (b.user_ratings_total && a.user_ratings_total) {
+                return b.user_ratings_total - a.user_ratings_total;
+            } else if (b.user_ratings_total) {
+                return 1;
+            } else if (a.user_ratings_total) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+    }
     renderRestaurantInfo(restaurantList);
 }
 
@@ -328,19 +328,19 @@ function renderRestaurantInfo(restaurants) {
         const rating = document.createElement("p");
         rating.classList.add("star-rating");
         rating.textContent = `${placeDetails.rating ? placeDetails.rating.toFixed(1) : "N/A"
-            }`;
+        }`;
         details.appendChild(rating);
 
         const reviewCount = document.createElement("p");
         reviewCount.textContent = `리뷰 수: ${placeDetails.user_ratings_total ? placeDetails.user_ratings_total : "N/A"
-            }`;
+        }`;
         details.appendChild(reviewCount);
 
         const phone = document.createElement("p");
         phone.textContent = `연락처: ${placeDetails.formatted_phone_number
             ? placeDetails.formatted_phone_number
             : "N/A"
-            }`;
+        }`;
         details.appendChild(phone);
 
         restaurantInfo.appendChild(details);
@@ -355,7 +355,7 @@ function renderRestaurantInfo(restaurants) {
             const mapUrl = `https://www.google.com/maps/search/?api=1&query=${name}`;
             window.open(mapUrl, "_blank");
         });
-        
+
         actions.appendChild(detailBtn);
 
         const likeBtn = document.createElement("button");
@@ -372,6 +372,22 @@ function renderRestaurantInfo(restaurants) {
 
         infoBox.appendChild(restaurantInfo);
     });
+}
+
+function redirectToPage1() {
+    window.location.href = "/Main";
+}
+
+function redirectToPage2() {
+    window.location.href = "/Hotel";
+}
+
+function redirectToPage3() {
+    window.location.href = "/Restaurant_Weather";
+}
+
+function redirectToPage5() {
+    window.location.href = "/MyPage";
 }
 
 // 페이지 로드 시 지도 초기화
