@@ -12,9 +12,10 @@
 }
 
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'S-CoreDream-3Light';
+    font-family: 'GangwonEdu_OTFBoldA';
 }
 
 /* 헤더 스타일링 */
@@ -23,31 +24,17 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    font-family: 'S-CoreDream-3Light';
+    user-select: none;
 }
-h1{
-    text-align: center;
-    margin-top: 15px;
-}
-h2{
-    text-align: center;
-    margin-top: 18px;
-    font-size: 15px;
-}
+
 .right {
     display: flex;
     align-items: center;
     justify-content: flex-end; /* 헤더 우측 정렬 */
     margin-top: 10px; /* 헤더의 제일 위쪽으로 이동 */
     margin-right: 20px; /* 로그인 버튼과 드롭다운 메뉴 사이의 간격 조절 */
-}
-
-.weatherInfo {
-    font-size: 16px;
-    user-select: none;
-    margin-right: 180px;
-    color: #fff;
-    position: absolute; /* 절대 위치로 변경 */
-    margin-top: 3px;
+    font-family: 'TheJamsil5Bold';
 }
 
 .btn-navi.login {
@@ -55,287 +42,288 @@ h2{
     border-radius: 15px;
     padding: 10px 20px;
     text-align: center;
-    font-size: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 10px; /* 로그인 버튼과 드롭다운 사이의 간격 조절 */
     cursor: pointer;
+    font-family: 'S-CoreDream-3Light';
 }
 
-.btn-navi.login:hover {
-    background-color: #747474;
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+
+}
+
+.dropdown-btn {
+    background-color: #d0d1d0; /* Green */
+    border-radius: 15px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px; /* 드롭다운 버튼과 로그인 버튼 사이의 간격 조절 */
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
 
 .show {
     display: block;
 }
-
-.menu {
-    display: flex;
-    justify-content: space-around;
-    background-color: #ffffff;
-    color: rgb(80, 80, 80);
-    font-size: 18px;
-    padding: 5px;
-    align-items: center; /* 추가된 부분 */
-    list-style: none;
-    border: 1px solid #ccc; /* 모든 면에 테두리 추가 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+nav ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.menu-item {
-    padding: 10px;
-    user-select: none;
-    cursor: pointer;
-    position: relative;
+nav ul li {
+    display: inline;
+    margin-right: 20px;
 }
 
-.dropdown-content {
-    display: none;
-    user-select: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    color: black;
-    min-width: 100%;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    padding: 10px;
-    top: 100%;
-    left: 0;
-    box-sizing: border-box;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
-.dropdown-content .menu-item {
-    padding: 20px;
+/* 히어로 섹션 스타일링 */
+.hero {
     text-align: center;
-    background : none;
-    border: none;
-    white-space: nowrap;
-    font-size: 1px;
+    padding: 50px 0;
+    background-image: url("/img/집.jpg");
+    background-color: rgba(255, 255, 255, 0.5); /* 흰색 배경의 투명도를 50%로 설정 */
+    background-blend-mode: overlay; /* 배경 이미지와 색상을 혼합하는 모드를 설정 */
+    background-position: center; /* 이미지를 가운데 정렬합니다 */
+    background-size: cover; /* 이미지가 영역을 채울 수 있도록 설정 */
+    height: 300px;
 }
 
-.show {
-    display: grid;
+.hero h2 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    user-select: none;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
+.hero p {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    user-select: none;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.top-travel-section {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto; /* 수직 가운데 정렬을 위해 margin을 auto로 설정 */
+    height: 450px;
+    width: 85%;
+    justify-content: center; /* 가로 방향으로 가운데 정렬 */
+    align-items: center; /* 세로 방향으로 가운데 정렬 */
+
+}
+
+/* 가운데 칸 스타일링 */
 .main-content {
     display: flex;
-    width: 98%;
-    padding: 10px;
-    gap: 30px;
-    position: relative;
-}
-
-.map-container {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 960px;
-    height: 540px;
-    margin-top: 50px;
-    position: relative;
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-}
-
-.radius-dropdown {
-    position: absolute;
-    top: 250px;
-    left: 10px;
-    z-index: 1;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.radius-dropdown select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="black" d="M0 0L2 2L4 0z"/></svg>') no-repeat right 10px center;
-    background-color: #fff;
-    background-size: 10px;
-    width: 150px;
-}
-
-.radius-dropdown select::-ms-expand {
-    display: none;
-}
-
-.moveToUserLocation {
-    margin-left: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-#search-input {
-    margin-left: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
-}
-
-#selected-location {
-    margin-left: 10px;
-    /* 검색 입력창 오른쪽으로 20px 여백 */
-    font-size: 14px;
-    color: black;
-    user-select: none;
-}
-
-.dropdown-label {
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-label::after {
-    content: '▼';
-    margin-left: 5px;
-    font-size: 10px;
-}
-
-.restaurant-container {
-    position: relative;
-    margin-top: 50px;
-}
-
-.restaurant-info-box {
-    padding: 10px;
-    width: 950px;
-    height: 560px;
-    overflow-y: auto;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-
-.sort-dropdown {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    margin-right: 10px;
-    z-index: 1;
-}
-
-.restaurant-info {
-    display: flex;
-    user-select: none;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #bdbbbb;
-    border-radius: 8px;
-    background-color: ghostwhite;
-}
-
-.restaurant-info img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    margin-right: 10px;
-}
-
-.restaurant-details {
-    flex: 1;
-}
-
-.restaurant-details h4 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.restaurant-details p {
-    margin: 4px 0;
-}
-
-.restaurant-actions {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 80px;
-}
-
-.restaurant-actions button {
-    border: none;
-    color: black;
-    background-color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 5px 22px;
-    border: 1px solid #ccc; /* 모든 면에 테두리 추가 */
-}
-
-.restaurant-actions img {
-    width: 16px;
-    height: 16px;
-}
-
-.restaurant-actions button:hover {
-    text-decoration: underline;
-}
-
-.star-rating {
-    color: #ffc107;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-}
-
-.star-rating::before {
-    content: '★';
-    margin-right: 5px;
-}
-
-.street-view {
-    width: 100%;
-    height: 400px;
-    margin-top: 20px;
-    display: none;
-    /* 기본적으로 숨김 */
-}
-
-* {
-    padding: 0;
-    margin: 0;
-}
-
-.container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px;
+
 }
 
-.container * {
-    margin: 10px;
-    color: black;
+.toptrave1,
+.toptrave2 {
+    font-size: 25px;
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 500px;
+    box-sizing: border-box;
 }
 
-.container h1 {
-    font-size: 3em;
+.text-with-underline {
+    text-decoration: underline;
+    user-select: none;
+}
+
+.results1 {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.results2 {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.result-card {
+    width: calc(15% - 20px);
+    /* 카드의 너비를 30%로 설정 */
+    height: 300px;
+    /* 카드의 높이를 300px로 설정 */
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
 }
 
 
+.result-card h2 {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #007bff;
+    text-align: center;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+}
+
+.results1 .result-card button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.results2 .result-card button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.result-card img {
+    width:100%;
+    height: auto;
+    object-fit: cover;
+}
 
 footer {
-    font-size: 13px;
-    position: fixed; /* 화면에 고정 */
-    bottom: 0; /* 화면 하단에 배치 */
+    position: relative;
     width: 100%;
     background-color: #333;
     color: #fff;
     padding: 10px 0;
     text-align: center;
+}
+
+/* 모바일 화면에 대한 반응형 스타일링 */
+@media (max-width: 768px) {
+    .hero {
+        padding: 30px 0;
+    }
+    .hero h2 {
+        font-size: 1.5em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+
+    .results1, .results2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .result-card {
+        width: 10%; /* 카드 너비를 80%로 조정 */
+        height: auto;
+    }
+    .result-card img {
+        width:80%;
+        height: auto;
+        object-fit: cover;
+    }
+    .results1 .result-card button {
+        width: 8%; /* 카드 너비를 80%로 조정 */
+        height: auto;
+    }
+
+}
+
+@media (max-width: 280px) {
+    .hero {
+        padding: 20px 0;
+    }
+    .hero h2 {
+        font-size: 1.2em;
+    }
+    .hero p {
+        font-size: 0.8em;
+    }
+
+    .results1, .results2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .result-card {
+        width: 10%; /* 카드 너비를 100%로 조정 */
+        height: auto;
+    }
+    .result-card img {
+        width:80%;
+        height: auto;
+        object-fit: cover;
+    }
+    .results1 .result-card button {
+        width: 8%; /* 카드 너비를 80%로 조정 */
+        height: auto;
+    }
 }
