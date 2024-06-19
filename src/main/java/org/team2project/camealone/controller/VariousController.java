@@ -35,6 +35,11 @@ public class VariousController {
     @GetMapping("/Info")
     public String Info() {return "Info";}
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    
     @GetMapping("/Like")
     public String Like() {return "like";}
 }
