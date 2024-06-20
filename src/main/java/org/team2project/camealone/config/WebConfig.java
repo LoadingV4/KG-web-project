@@ -2,10 +2,8 @@ package org.team2project.camealone.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.http.MediaType;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @EnableWebMvc
@@ -17,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("honja-ALB-2035357464.ap-northeast-2.elb.amazonaws.com")  // 클라이언트 URL
+                        .allowedOrigins("http://localhost:8080")  // 클라이언트 URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
@@ -41,6 +39,16 @@ public class WebConfig implements WebMvcConfigurer {
                         .addResourceLocations("classpath:/static/")
                         .setCachePeriod(3600)
                         .resourceChain(true);
+            }
+
+            @Override
+            public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+                configurer.favorPathExtension(true)
+                        .ignoreAcceptHeader(true)
+                        .defaultContentType(MediaType.TEXT_HTML)
+                        .mediaType("html", MediaType.TEXT_HTML)
+                        .mediaType("css", MediaType.valueOf("text/css"))
+                        .mediaType("js", MediaType.valueOf("application/javascript"));
             }
         };
     }
