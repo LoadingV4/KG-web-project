@@ -27,6 +27,18 @@ public class WebConfig {
                         .addResourceLocations("classpath:/static/js/")
                         .setCachePeriod(3600) // 캐시 기간 설정 (초 단위)
                         .resourceChain(true);
+                registry.addResourceHandler("/css/**")
+                        .addResourceLocations("classpath:/static/css/")
+                        .setCachePeriod(3600)
+                        .resourceChain(true);
+                registry.addResourceHandler("/images/**")
+                        .addResourceLocations("classpath:/static/images/")
+                        .setCachePeriod(3600)
+                        .resourceChain(true);
+                registry.addResourceHandler("/**")
+                        .addResourceLocations("classpath:/static/")
+                        .setCachePeriod(3600)
+                        .resourceChain(true);
             }
         };
     }
