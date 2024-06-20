@@ -25,15 +25,6 @@ public class HomeController {
         return "Main";
     }
 
-    // MIME 타입 설정 코드
-    @GetMapping("/css/Main.css")
-    @ResponseBody
-    public void getCss(HttpServletResponse response) throws IOException {
-        Path path = Paths.get("src/main/resources/static/css/Main.css");
-        response.setContentType("text/css");
-        Files.copy(path, response.getOutputStream());
-    }
-
     // 로그인 여부를 확인해서 로그인이 된 상태에서만 마이페이지로 이동하게하는 코드
     // response가 response.json을 반환하면 로그인이 된것
     @GetMapping("/api/check-login-status")
