@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:8080")  // 클라이언트 URL
+                        .allowedOrigins("honja-ALB-2035357464.ap-northeast-2.elb.amazonaws.com")  // 클라이언트 URL
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
