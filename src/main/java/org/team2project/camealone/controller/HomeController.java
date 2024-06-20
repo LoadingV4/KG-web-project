@@ -19,6 +19,11 @@ public class HomeController {
         return "Main";
     }
 
+    @GetMapping("/health") // AWS 로드 밸런서 헬스체크 경로
+    public int health() {
+        return 200;
+    }
+
     // 로그인 여부를 확인해서 로그인이 된 상태에서만 마이페이지로 이동하게하는 코드
     // response가 response.json을 반환하면 로그인이 된것
     @GetMapping("/api/check-login-status")
