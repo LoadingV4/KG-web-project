@@ -5,25 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/Login.css">
-    <a></a>
 </head>
 <body>
-    <div class="login-container">
-        <h1>로그인</h1>
-        <form id="loginForm">
-                <label for="id">ID</label>
-                <input type="text" id="id" name="id" required>
+<div class="login-container">
+    <h1>로그인</h1>
+    <form id="loginForm">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" required>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
 
-                <button type="submit">로그인</button>
-            </form>
-
-        </form>
-        <a href="/user/signup"><button id="signupBtn">회원가입</button></a>
-        <div id="error-message"></div>
-    </div>
-    <script src="/js/login.js"></script>
+        <button type="submit">로그인</button>
+    </form>
+    <a id="signup-link" href="/user/signup"><button id="signupBtn">회원가입</button></a>
+    <div id="error-message"></div>
+</div>
+<script src="/js/login.js"></script>
 </body>
 </html>
