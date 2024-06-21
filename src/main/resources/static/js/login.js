@@ -1,19 +1,20 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    var id = document.getElementById("id").value;
-    var password = document.getElementById("password").value;
+        var id = document.getElementById("id").value;
+        var password = document.getElementById("password").value;
 
-    fetch('/user/loginService', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: id,
-            password: password
+        fetch('/user/loginService', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id,
+                password: password
+            })
         })
-    })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -30,9 +31,10 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
             console.error('Error:', error);
             document.getElementById("error-message").textContent = "아이디나 비밀번호가 일치하지 않습니다";
         });
-});
+    });
 
-document.getElementById("signup-link").addEventListener("click", function() {
-    // 회원가입 페이지로 이동
-    window.location.href = "/user/signup";
+    document.getElementById("signupBtn").addEventListener("click", function() {
+        // 회원가입 페이지로 이동
+        window.location.href = "/user/signup";
+    });
 });
