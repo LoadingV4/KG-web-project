@@ -45,7 +45,7 @@ public class WebConfig implements WebMvcConfigurer {
             public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
                 configurer.favorPathExtension(true)
                         .ignoreAcceptHeader(true)
-                        .defaultContentType(MediaType.TEXT_HTML)
+                        .defaultContentType(MediaType.APPLICATION_JSON)
                         .mediaType("html", MediaType.TEXT_HTML)
                         .mediaType("css", MediaType.valueOf("text/css"))
                         .mediaType("js", MediaType.valueOf("application/javascript"));
