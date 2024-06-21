@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
-    @GetMapping("") //  메인페이지
+    @GetMapping("/") //  메인페이지
     public String home(Model model,HttpSession session) {
         String id = (String) session.getAttribute("id");
         String name = (String) session.getAttribute("name");
