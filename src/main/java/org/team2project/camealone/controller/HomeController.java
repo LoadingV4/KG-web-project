@@ -16,7 +16,6 @@ import java.util.Map;
 public class HomeController {
     @GetMapping("/") //  메인페이지
     public String home(Model model,HttpSession session) {
-       
         return "Main";
     }
 
