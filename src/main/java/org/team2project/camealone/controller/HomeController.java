@@ -16,14 +16,7 @@ import java.util.Map;
 public class HomeController {
     @GetMapping("/") //  메인페이지
     public String home(Model model,HttpSession session) {
-        String id = (String) session.getAttribute("id");
-        String name = (String) session.getAttribute("name");
-
-        if (id != null && name != null) {
-            model.addAttribute("name", name);
-            model.addAttribute("id", id);
-            logger.info("id : "+id+" "+"name : "+name);
-        }
+       
         return "Main";
     }
 
