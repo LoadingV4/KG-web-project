@@ -12,6 +12,6 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        return new LettuceConnectionFactory("redis-cluster-001.ybqofh.0001.apn2.cache.amazonaws.com:6379", 6379);
+        return new LettuceConnectionFactory("redis-cluster-001.ybqofh.0001.apn2.cache.amazonaws.com", 6379);
     }
 }
