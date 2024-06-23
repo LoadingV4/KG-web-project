@@ -14,7 +14,7 @@ public class RedisConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration(
-            "redis-cluster-ro.ybqofh.ng.0001.apn2.cache.amazonaws.com", 6379
+            "redis-cluster.ybqofh.ng.0001.apn2.cache.amazonaws.com", 6379
         );
         // 필요시 비밀번호 설정
         // standaloneConfig.setPassword("your_redis_password");
